@@ -100,6 +100,39 @@ public class EjerciciosNivel2 {
         
     }
     
+    /**
+     * Metodo de Floyd
+     * Encuentra el numero que esta duplicado en una lista de ints
+     * @param listaNumeros
+     * @return 
+     */
+    
+    // [1,3,2,4,4]
+    public int findDuplicate(int []listaNumeros){
+        int tortuga = listaNumeros[0];
+        int liebre = listaNumeros[0];
+        boolean iguales = false;
+        while (!iguales){
+            tortuga = listaNumeros[tortuga];
+            liebre = listaNumeros[listaNumeros[liebre]];
+            if (tortuga == liebre){
+                iguales = true;
+            }
+        }
+         
+        int aux1 = listaNumeros [0];
+        int aux2 = tortuga;
+        while (aux1 != aux2){
+            aux1 = listaNumeros[aux1];
+            aux2 = listaNumeros[aux2];
+
+        }
+        return aux1;
+    }
+        
+    
+
+
 
 
     /**
@@ -119,6 +152,8 @@ public class EjerciciosNivel2 {
       
         System.out.println(ejercicio.escaleraDePalabras(listaPalabras));
         
+        System.out.println("------");
+
         System.out.println(ejercicio.costeErroresADN("ACGT", "TGCA"));
         System.out.println(ejercicio.costeErroresADN("A-C-G-T-ACGT", "TTGGCCAATGCA"));
         System.out.println(ejercicio.costeErroresADN("AAAAAAAA", "TTTATTTT"));
@@ -127,6 +162,13 @@ public class EjerciciosNivel2 {
         System.out.println(ejercicio.costeErroresADN("--------", "ACGTACGT"));
         System.out.println(ejercicio.costeErroresADN("TAATAA", "ATTATT"));
         System.out.println(ejercicio.costeErroresADN("GGGA-GAATATCTGGACT", "CCCTACTTA-AGACCGGT"));
+        
+        System.out.println("------");
+        
+        System.out.println(ejercicio.findDuplicate(new int []{3,2,3,4,1}));
+        System.out.println(ejercicio.findDuplicate(new int []{4,2,3,4,1}));
+        System.out.println(ejercicio.findDuplicate(new int []{1,1,3,4,1}));
+        
     }
     
     
