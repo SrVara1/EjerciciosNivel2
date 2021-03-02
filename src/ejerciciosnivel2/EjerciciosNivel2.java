@@ -203,6 +203,66 @@ public class EjerciciosNivel2 {
 
 
 
+    public String calculadoraRPN(String [] entrada){
+        
+        String [] pila =new String [100];
+        int posicionPila = 0; // indica el inicio de la pila en el que insertar o leer 
+        
+        for (int i=0; i< entrada.length; i++){
+            
+            if (entrada [i] != "+" && entrada[i] != "-" && entrada [i] != "*" && entrada [i] != "/" ){
+                //System.out.print(entrada [i] + " ");
+                //un operando tengo quemeterlo en la pila
+                pila[posicionPila]= entrada [i];
+                posicionPila++;
+            }
+            else{ // es una operacion
+                if (posicionPila-2 >=0){
+                Double operando1 = Double.valueOf(pila [posicionPila-1]);
+                Double operando2 = Double.valueOf(pila [posicionPila-2]);
+                
+
+                if (entrada [i] == "+"){
+                    operando1 = operando1 + operando2;
+            }
+                if (entrada [i] == "-"){
+                    operando1 = operando1 - operando2;
+            }
+                if (entrada [i] == "*"){
+                    operando1 = operando1 * operando2;
+            }
+                if (entrada [i] == "/"){
+                    if (operando2 == 0){
+                        return "no se puede dividir entre 0 inutil";
+                    }
+                    else{
+                       operando1 = operando1 /operando2;
+
+                    }
+            }
+            posicionPila = posicionPila -2;
+            pila[posicionPila] = operando1+ ""; //guado el resultado en la casilla correspondiente
+            posicionPila++;
+            }
+                else{
+                    return "ERROR";
+                }
+            }
+            
+        } 
+        
+        
+        return pila[0];
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * @param args the command line arguments
@@ -246,6 +306,11 @@ public class EjerciciosNivel2 {
         System.out.println(ejercicio.strStr("hola MMunn!","Mun"));
         System.out.println(ejercicio.strStr("Mumn!","mun"));
         
+         System.out.println("------");
+
+//        System.out.println(ejercicio.calculadoraRPN (new String [] {"3", "2", "+","7","*"} ));
+        System.out.println(ejercicio.calculadoraRPN (new String [] {"4", "2", "/","7","*"} ));
+
     }
     
     
