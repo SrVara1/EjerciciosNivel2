@@ -218,8 +218,8 @@ public class EjerciciosNivel2 {
             }
             else{ // es una operacion
                 if (posicionPila-2 >=0){
-                Double operando1 = Double.valueOf(pila [posicionPila-1]);
-                Double operando2 = Double.valueOf(pila [posicionPila-2]);
+                double operando1 = Double.valueOf(pila [posicionPila-1]);
+                double operando2 = Double.valueOf(pila [posicionPila-2]);
                 
 
                 if (entrada [i] == "+"){
@@ -255,6 +255,51 @@ public class EjerciciosNivel2 {
         return pila[0];
         
     }
+    
+    
+    
+    private boolean cabeUnaCaja( boolean[][] camion, int ancho, int alto){
+        int altoCamion = camion.length; //filas
+        int anchoCamion = camion[0].length; //columnas
+
+        
+        for(int i=0; i< altoCamion; i++){
+           for (int j =0; j<anchoCamion; j++){
+              if (!camion [i][j]){ //Miro si el sitio esta vacio
+                  int horizontal=j;
+                  int vertical = i;
+                  while (vertical - i<alto && vertical < altoCamion && !camion[vertical][horizontal] ){
+                      while (horizontal-j<ancho && horizontal <anchoCamion && !camion[vertical][horizontal]){
+                          horizontal ++;
+                      }
+                      if (horizontal - j == ancho){ //si que cabe en esa fila
+                         vertical ++;//vuelvo al iniio de 
+                         horizontal = j; //la siguiente fila
+                      }
+                      else {
+                          //la caja no cabe y hay que volver alos for
+                          vertical=altoCamion*2; //esto es una argucia para indicarle al if fuera del while que la caja no cabe aqui
+                                                 // y hay que devolver el control a los for
+                      }
+                  }
+                  if (vertical-i==alto){
+                      //si se cumple e poruqe cabe la caja entera
+                      return true;
+                  }
+                  
+                  
+              }
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -310,10 +355,30 @@ public class EjerciciosNivel2 {
 
 //        System.out.println(ejercicio.calculadoraRPN (new String [] {"3", "2", "+","7","*"} ));
         System.out.println(ejercicio.calculadoraRPN (new String [] {"4", "2", "/","7","*"} ));
+        
+        
+        
+         System.out.println("------");
+         
+         boolean[][] camion = {
+        {true, true, true, true, true, true, true, true},
+        {true, true, true, false, false, true, true, true},
+        {true, true, true, false, false, true, true, true},
+        {true, true, true, false, false, true, false, false},
+        {true, true, true, true, true, true, false, false},
+         };
+         
+//         System.out.println(ejercicio.cabeUnaCaja(camion,2, 2));
+//         System.out.println(ejercicio.cabeUnaCaja(camion,3, 2));
+//         System.out.println(ejercicio.cabeUnaCaja(camion,1, 2));
+//         System.out.println(ejercicio.cabeUnaCaja(camion,1, 3));
+//         System.out.println(ejercicio.cabeUnaCaja(camion,3, 3));
+         System.out.println(ejercicio.cabeUnaCaja(camion,3, 2));
 
+         
+    
+    
     }
-    
-    
     
     
  
